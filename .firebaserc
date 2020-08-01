@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "firechat-a2bac": {
+      "hosting": {
+        "firechat": [
+          "firechat-a2bac"
+        ]
+      }
+    }
+  }
+}
