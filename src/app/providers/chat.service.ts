@@ -31,12 +31,14 @@ export class ChatService {
 
   }
 
+  /* TWITTER API PENDIENTE */
 
 
   login(proveedor:string) {
     this.auth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
   logout() {
+    this.usuario = {};
     this.auth.auth.signOut();
   }
 
