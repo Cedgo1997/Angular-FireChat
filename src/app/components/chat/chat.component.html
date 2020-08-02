@@ -1,7 +1,15 @@
 <h1>chat</h1>
 <hr />
 <div class="app-mensajes" id="app-mensajes">
-  <div class="text-right mr-1">
+
+  <div class="text-right mr-1" *ngFor="let chat of _cs.chats" >
+    <span class="badge badge-primary">
+        César
+    </span>
+    <p>{{ chat.mensaje }}</p>
+  </div>
+
+  <!--   <div class="text-right mr-1">
     <span class="badge badge-primary">César</span>
     <p>Este es un mensaje de Chat</p>
   </div>
@@ -9,15 +17,14 @@
   <div>
     <span class="badge badge-success">María</span>
     <p>Este es un mensaje de Chat</p>
-  </div>
-
-
+  </div> -->
 </div>
 
-<input 
-        type="text" 
-        name="mensaje" 
-        (keyup.enter)="enviarMensaje()" 
-        class="form-control"
-        [(ngModel)]="mensaje" 
-        placeholder="Mensaje...">
+<input
+  type="text"
+  name="mensaje"
+  (keyup.enter)="enviarMensaje()"
+  class="form-control"
+  [(ngModel)]="mensaje"
+  placeholder="Mensaje..."
+/>
