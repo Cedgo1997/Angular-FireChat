@@ -18,31 +18,32 @@ export class ChatService {
   public usuario: any = {};
 
   constructor(private afs: AngularFirestore, public auth: AngularFireAuth) {
-
-    this.auth.authState.subscribe( user => {
+    this.auth.authState.subscribe((user) => {
       console.log(user);
-      if(!user) {
+      if (!user) {
         return;
       }
 
       this.usuario.nombre = user.displayName;
       this.usuario.uid = user.uid;
-    } )
-
+    });
   }
 
   /* TWITTER API PENDIENTE */
 
+  login(proveedor: string) {
+    if (proveedor === "google") {
+      this.auth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    }
 
-  login(proveedor:string) {
-    this.auth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    if(proveedor === 'twitter') {
+      this.auth.auth.signInWithPopup(new auth.TwitterAuthProvider());
+    }
   }
   logout() {
     this.usuario = {};
     this.auth.auth.signOut();
   }
-
-
 
   cargarMensajes() {
     this.itemsCollection = this.afs.collection<Mensaje>("chats", (ref) =>
@@ -70,7 +71,7 @@ export class ChatService {
       nombre: this.usuario.nombre,
       mensaje: texto,
       fecha: new Date().getTime(),
-      uid: this.usuario.uid
+      uid: this.usuario.uid,
     };
 
     return this.itemsCollection.add(mensaje);
