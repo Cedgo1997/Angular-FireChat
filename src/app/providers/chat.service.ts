@@ -29,8 +29,6 @@ export class ChatService {
     });
   }
 
-  /* TWITTER API PENDIENTE */
-
   login(proveedor: string) {
     if (proveedor === "google") {
       this.auth.auth.signInWithPopup(new auth.GoogleAuthProvider());
